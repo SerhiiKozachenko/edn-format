@@ -14,7 +14,7 @@
 (event/listen dirty "blur"
               (fn []
                 (try
-                  (if-some [edn (read-string dirty/value)]
+                  (if-some [edn (read-string {:default str} dirty/value)]
                     (let [edn-pretty-str (with-out-str (pprint edn))]
                       (set! clean/value edn-pretty-str))
                     (set! clean/value ""))
